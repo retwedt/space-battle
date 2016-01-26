@@ -1,0 +1,106 @@
+/*game.css*/
+/*  styles for game canvas, score, lives, and menus  */
+
+
+/*  style canvas for game  */
+canvas{
+	position:absolute;
+	top:60%;
+	left:50%;
+  transform: translate(-50%, -50%);
+	background:transparent;
+}
+
+#bg-canvas{
+	z-index: -2;
+}
+
+#main-canvas{
+	z-index:-1;
+}
+
+#hero-canvas{
+	z-index: 0;
+}
+
+
+
+/*Score on main page*/
+#text-elements{
+	position:absolute;
+	top:60%;
+	left:50%;
+  transform: translate(-50%, -50%);
+	height:600px;
+	width:600px;
+	font-size:24px;
+/*	border: 2px red solid;
+*/	display:block;
+	color:white;  /*For in class demo*/
+}
+
+.player-score{
+	margin:5%;
+	width:35%;
+	display:inline-block;
+	vertical-align: top;
+}
+
+.player-health{
+	margin:5%;
+	width:35%;
+	display:inline-block;
+	text-align: right;
+	float:right;
+	vertical-align: top;
+}
+
+
+
+/*For Start Game Over, Pause screen*/
+.game-menu{
+	width:50%;
+	height:22%;
+	padding: 40px 0px 0px 0px;
+	margin: 20% auto 0px auto;
+	border: solid 1px rgba(25, 25, 25, 0.3);
+	background-color: rgba(200, 200, 200, 0.75);
+	color: rgb(25, 25, 25);
+	text-align: center;
+	cursor:default;
+/*	display: none;
+*/}
+
+
+
+/*highlight button on hover*/
+.game-menu p > span:hover{
+/*	color: rgb(150, 150, 225);
+*/	color: white;   /*For in class demo*/
+	cursor:pointer;
+}
+
+/*pause button created from css shapes*/
+#pause-button {
+	width:28px;
+	position:absolute;
+	bottom:2%;
+	left:3%;
+}
+
+#pause-button:hover {
+	cursor:pointer;
+}
+
+.bars {
+/*	background-color: rgb(25, 25, 25);
+*/	background-color:white;
+	width:6px;
+	height:24px;
+	display: inline-block;
+}
+
+#pause-button:hover > .bars {
+	background-color: rgb(150, 150, 225);
+}
+
