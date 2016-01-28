@@ -11,7 +11,7 @@ This website and game was the demo Capstone Project for the first CodeAbode boot
 ```
 ├── css/
 ├── img/
-	└── hero/
+  └── hero/
 ├── js/
 ├── about.html
 ├── index.html
