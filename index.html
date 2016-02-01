@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Space Battle!</title>
+	<title>Penguins Attack!</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="shortcut icon" href="img/favicon.ico">
@@ -16,59 +16,58 @@
 
 
 <body>
-  <header>
-    <nav>
-      <a href="index.html" class="logo" ><img src="img/logo.png" alt="Logo" title="Logo" /></a>
-      <div class="menu" >
-        <a href="index.html" class="links" >Home</a>
-        <div class="dropdown">
-          <a href="story.html" class="links" >Story<div class="arrow arrow-left"></div></a>
-          <div class="dropdown-menu">
-            <a href="story.html#hero" class="sub-links" >Hero</a>
-            <a href="story.html#enemies" class="sub-links" >Enemies</a>
-            <a href="story.html#lasers" class="sub-links" >Lasers!</a>
-          </div>
-        </div>
-        <a href="about.html" class="links" >About the Dev</a>
-      </div>
-    </nav>
-  </header>	
+	<header id="top-bar">
+		<div id="header-wrapper">
+			<div id="logo"><a href="index.html"><img src="img/logoSmall.png" alt="Logo" ></a></div>
+
+			<nav>
+				<ul>
+					<li><a href="index.html">Game</a></li>
+					<li>
+						<a href="story.html">Story <span class="marker"></span></a>
+						<div>
+							<ul>
+								<li><a href="story.html#hero">Hero</a></li>
+								<li><a href="story.html#enemies">Enemies</a></li>
+								<li><a href="story.html#bullets">Bullets</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="about.html">About the Developer</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
 
 	<div class="main-content">
-		<!--Canvas for panning background-->
-		<canvas id="main-canvas" width="600"  height="600" >Your browser does not support canvas, please use a different browser.</canvas>
+		<div class="game-wrapper">
+			<!--Canvas for panning background-->
+			<canvas id="bg-canvas" width="600"  height="600" >Your browser does not support canvas, please use a different browser.</canvas>
+			<!--Canvas for enemies and bullets-->
+			<canvas id="main-canvas" width="600"  height="600" ></canvas>
+			<!--Canvas for hero-->
+			<canvas id="hero-canvas" width="600"  height="600" ></canvas>
+<!--			<img id="start-image" src="img/startScreen.png" />-->
+			<div id="text-elements">
+				<div class="player-score" id="score">Score: <span id="current-score">0</span></div>
+				<div class="player-health" id="health">Lives: <span id="current-health">0</span></div>
 
-		<div id="text-elements">
-			<div class="player-score" id="score">Score: <span id="current-score">0</span></div>
-			<div class="player-health" id="health">Lives: <span id="current-health">0</span></div>
-
-			<div class="game-menu" id="start-menu" style="display:block;">
-				<em><strong>Space Battle!</strong></em>
-				<br>
-				<p><span id="start-button">Start</span></p>
-			</div>
-
-			<div class="game-menu" id="gameover-menu" style="display:none;">
-				<em><strong>Game Over!</strong></em>
-				<br>
-				<p><span id="restart-button">Retry</span></p>
-			</div>
-
-			<div class="game-menu" id="pause-menu" style="display:none;">
-				<em><strong>Pause</strong></em>
-				<br>
-				<p><span id="unpause-button">Resume</span></p>
-			</div>
-
-			<div id="pause-button">
-				<div class="bars"></div>
-				<div class="bars"></div>
+				<div class="game-menu" id="start-menu" style="display:block;"><em><strong>Penguins Attack!</strong></em><br><p><span id="start-button">Start</span></p></div>
+				<div class="game-menu" id="gameover-menu" style="display:none;"><em><strong>Game Over!</strong></em><br><p><span id="restart-button">Retry</span></p></div>
+				<div class="game-menu" id="pause-menu" style="display:none;"><em><strong>Pause</strong></em><br><p><span id="unpause-button">Resume</span></p></div>
+				<div id="pause-button">
+					<div class="bars"></div>
+					<div class="bars"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	<!-- Custom Js -->
+	
 	<script src="./js/game.js"></script>
+	<!--<script src="./js/game_class.js"></script>-->
+	<!--<script src="./js/game3.js"></script>-->
+	<!--<script src="./js/game4_pt1.js"></script>-->
 
 </body>
 

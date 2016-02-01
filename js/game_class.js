@@ -1,15 +1,9 @@
 //game_class.js
 
-//**********Canvas Elements
-// get canvas elements, create drawing objects
-var bgCanvas = document.getElementById("bg-canvas");
-var bgCtx = bgCanvas.getContext("2d");
-
-var mainCanvas = document.getElementById("main-canvas");
-var mainCtx = mainCanvas.getContext("2d");
-
-var heroCanvas = document.getElementById("hero-canvas");
-var heroCtx = heroCanvas.getContext("2d");
+//get canvas element
+var canvas = document.getElementById("main-canvas");
+//create 2d drawing object
+var ctx = canvas.getContext("2d");
 
 
 
@@ -31,10 +25,6 @@ var pauseButton = document.getElementById("pause-button");
 var scoreElement = document.getElementById("current-score");
 var healthElement = document.getElementById("current-health");
 
-var playerScore = document.getElementById("score");
-var playerHealth = document.getElementById("health");
-
-var startImage = document.getElementById("start-image");
 
 
 //game variables
@@ -42,10 +32,19 @@ var playerScore = 0;
 var playerHealth = 0;
 var isPaused = true;
 
-var counter = 0;  //for checking fire rate
-var enemyMoveCounter = 0; // control random variables for enemy movement
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
 
-var tstcntr = 0; // test counter for debugging fire rate
+//add counter for checking fire rate
+
+var counter = 0;  //for checking fire rate
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
+
+
+
 
 
 
@@ -68,6 +67,14 @@ window.requestAnimFrame = (function(){
 
 
 
+
+
+
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
+
+//update image singleton to hold bullet image
 
 
 
@@ -107,11 +114,16 @@ var images = new function(){
 	}
 
 	//set the source for our images
-	this.bg.src = "img/backgroundFull.png";
-	this.hero.src = "img/heroRight.png";
-	this.enemy.src = "img/aliensSide.png";
-	this.bullet.src = "img/bulletRight.png";
+	this.bg.src = "img/space/spaceBg.png";
+	this.hero.src = "img/space/shipUp.png";
+	this.enemy.src = "img/space/enemy.png";
+	this.bullet.src = "img/space/bullet.png";
 }
+
+
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
 
 
 
@@ -145,13 +157,20 @@ function Background(){
 
 //create a new background object using the Background() constructor
 var bg = new Background();
-bg.setUp(0, 0, 600, 600, -32);
+bg.setUp(0, 0, 600, 600, 32);
 
 
 
 
 
 
+
+
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
+
+//add constructor functions for bullet and pool objects
 
 //constructor function for bullet
 function Bullet() {	
@@ -227,6 +246,9 @@ function Pool(maxSize) {
 	};
 }
 
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
 
 
 
@@ -236,6 +258,11 @@ function Pool(maxSize) {
 
 
 
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
+
+//update hero function to include ammo pool, setUpBullets method, and max fire rate
 
 //constructor function for hero
 function Hero(){
@@ -276,7 +303,12 @@ function Hero(){
 
 //create a new hero object using the Hero() constructor
 var hero = new Hero();
-hero.setUp(0, 0, 50, 50, 256, "right", 3, 15);
+hero.setUp(0, 0, 50, 50, 256, "up", 3, 15);
+
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
+
 
 
 
@@ -329,49 +361,56 @@ enemy.setUp(0, 0, 37, 48, 96);
 
 
 
+
 //resetEnemy
 //when called, the enemy is reset to a random position on the screen
 var resetEnemy = function(){
-	//clear canvas
-	mainCtx.clearRect(0, 0, mainCanvas.width, mainCanvas.height);
-
 	// place the enemy somewhere on the screen randomly
-	var rndX = (Math.random() * ((bg.width*0.2)-enemy.width))+(bg.width*0.8);
-	var rndY = (Math.random() * (bg.height-enemy.height));
+	var rndX = (Math.random() * (bg.width-enemy.width));
+	var rndY = (Math.random() * ((bg.height*0.2)-enemy.height));
 	enemy.setPos(rndX, rndY);
 }
 
 
-
-
 var resetPlayer = function(){
-	//clear canvas
-	heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+	hero.setPos(canvas.width/2, canvas.height*0.8, "up"); // set hero position to middle of screen
 
-	hero.setPos(bgCanvas.width*0.2, bgCanvas.height/2, "right"); // set hero position to middle of screen
+
+
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
+
+//reset bullets during player reset
 
 	//reset all bullets to alive=false
 	for (i = 0; i < hero.ammo.pool.length; i++){
 		hero.ammo.pool[i].alive = false;
 	}
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
+
+
+
 
 	//set image to correspond with the direction of the ship
 	if (hero.direction == "up"){
-		images.hero.src = "./img/heroUp.png";
+		images.hero.src = "./img/space/shipUp.png";
 	} else if (hero.direction == "right"){
-		images.hero.src = "./img/heroRight.png";
+		images.hero.src = "./img/space/shipRight.png";
 	} else if (hero.direction == "down"){
-		images.hero.src = "./img/heroDown.png";
+		images.hero.src = "./img/space/shipDown.png";
 	} else if (hero.direction == "left"){
-		images.hero.src = "./img/heroLeft.png";
+		images.hero.src = "./img/space/shipLeft.png";
 	} else if (hero.direction == "upRight"){
-		images.hero.src = "./img/heroUpRight.png";
+		images.hero.src = "./img/space/shipUpRight.png";
 	} else if (hero.direction == "upLeft"){
-			images.hero.src = "./img/heroUpLeft.png";
+			images.hero.src = "./img/space/shipUpLeft.png";
 	} else if (hero.direction == "downRight"){
-		images.hero.src = "./img/heroDownRight.png";
+		images.hero.src = "./img/space/shipDownRight.png";
 	} else if (hero.direction == "downLeft"){
-		images.hero.src = "./img/heroDownLeft.png";
+		images.hero.src = "./img/space/shipDownLeft.png";
 	}
 }
 
@@ -383,14 +422,6 @@ var resetPlayer = function(){
 
 
 
-//update background
-var updateBg = function(modifier){
-	//pan background
-	bg.x += bg.speed * modifier;
-	if (bg.x <= 0){
-		bg.x=bg.width;
-	}
-}
 
 
 
@@ -398,49 +429,125 @@ var updateBg = function(modifier){
 
 
 
-//check for update enemy position, bullets, etc.
+
+//check for user input, update player position, enemy position, variables, etc.
 var updateScene = function(modifier){
-	enemyMoveCounter++;
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
 
-	//move enemies
-	mainCtx.clearRect(enemy.x-17, enemy.y-17, enemy.width+34, enemy.height+34);
-	// if (   enemy.x < (0-hero.width) ) {
-	// 	resetEnemy();
-	// } else {
-	// 	if (enemyMoveCounter%60 > 1){
-	// 		enemyMoveCounter = 0;
-	// 		enemy.amp = Math.random();
-	// 		enemy.cycles =  Math.random();
+//update counter every time the updateScene function runs, this keeps track of how many frames have run since the last fire
 
-	// 	}
+	//fire rate counter
+	counter++;
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
 
-	// 	enemy.x -= enemy.speed * modifier;
-	// 	enemy.y += enemy.amp*(Math.sin(modifier*enemy.x)) * enemy.speed * modifier;
-	// }
-
-	//move enemy
-	if (enemy.x <= 0){
-		playerHealth -= 1;
-		resetPlayer();
-		resetEnemy();
-	} else {
-		enemy.x -= enemy.speed * modifier;
+	//update background position
+	//pan background left
+	bg.y += bg.speed * modifier;
+	if (bg.y >= bg.height){
+		bg.y=0;
 	}
 
+	//update player position, check for interaction with border
+	if (keysPressed[38]) { // Player holding up
+		//update image to correct direction, set direction variable of hero object
+		images.hero.src = "img/space/shipUp.png";
+		hero.direction = "up";
+
+		//screen boundaries up
+		if (hero.y <= bg.height*0.2){
+			hero.y = bg.height*0.2;
+		} else {
+			hero.y -= hero.speed * modifier;
+		}
+	}
+	if (keysPressed[40]) { // Player holding down
+		//update image and direction variable
+		images.hero.src = "img/space/shipDown.png";
+		hero.direction = "down";
+
+		//screen boundaries down
+		if (hero.y >= (bg.height-hero.height)){
+			hero.y = bg.height - hero.height;
+		} else {
+			hero.y += hero.speed * modifier;
+		}
+	}
+	if (keysPressed[37]) { // Player holding left
+		//update image and direction variable
+		images.hero.src = "img/space/shipLeft.png";
+		hero.direction = "left";
+
+		//screen boundaries left
+		if (hero.x <= 0){
+			hero.x = 0;
+		} else {
+			hero.x -= hero.speed*modifier;
+		}
+	}
+	if (keysPressed[39]) { // Player holding right
+		//update image and direction variable
+		images.hero.src = "img/space/shipRight.png";
+		hero.direction = "right";
+
+		//screen boundaries right
+		if (hero.x >= bg.width - hero.width){
+			hero.x = bg.width - hero.width;
+		} else {
+		hero.x += hero.speed*modifier;
+		}
+	}
+
+	//check for diagonal images
+	if (keysPressed[38] && keysPressed[37]){ //up and left
+		images.hero.src = "img/space/shipUpLeft.png";
+		hero.direction = "upLeft";
+	}
+	if (keysPressed[38] && keysPressed[39]){ //up and right
+		images.hero.src = "img/space/shipUpRight.png";
+		hero.direction = "upRight";
+	}
+	if (keysPressed[40] && keysPressed[37]){ //down and left
+		images.hero.src = "img/space/shipDownLeft.png";
+		hero.direction = "downLeft";
+	}
+	if (keysPressed[40] && keysPressed[39]){ //down and right
+		images.hero.src = "img/space/shipDownRight.png";
+		hero.direction = "downRight";
+	}
+
+
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
+
+//if space was pressed and it has been more frames than the fire rate, get a bullet from the array
+
+	if (keysPressed[32] && counter >= hero.fireRate) { // Player holding space
+		// console.log("fire!");
+		counter = 0;
+		hero.ammo.getBullet(hero.x, hero.y, 512, hero.direction);
+	}
+
+
+//update bullet position
 
 	//search through the bullet pool, check if each bullet is alive, if it alive, update the position, check boundry collisions, check enemy collisions
 	for (var i = 0; i < hero.ammo.size; i++) {
 		// Only draw until we find a bullet that is not alive
 		if (hero.ammo.pool[i].alive) {
-			mainCtx.clearRect(hero.ammo.pool[i].x-20, hero.ammo.pool[i].y-20, hero.ammo.pool[i].width+40, hero.ammo.pool[i].height+40);
+			ctx.clearRect(hero.ammo.pool[i].x-20, hero.ammo.pool[i].y-20, hero.ammo.pool[i].width+40, hero.ammo.pool[i].height+40);
 
 
 			//move bullets
-			hero.ammo.pool[i].x += hero.ammo.pool[i].speed * modifier; //right
+			hero.ammo.pool[i].y -= hero.ammo.pool[i].speed * modifier; //up
 
 
 			//if the bullet is off the map, reset it
-			if (hero.ammo.pool[i].y <= 0 || hero.ammo.pool[i].x >= bgCanvas.width || hero.ammo.pool[i].y <= 0 || hero.ammo.pool[i].y >= bgCanvas.height) {
+			if (hero.ammo.pool[i].y <= 0 || hero.ammo.pool[i].x >= canvas.width || hero.ammo.pool[i].y <= 0 || hero.ammo.pool[i].y >= canvas.height) {
 				hero.ammo.pool[i].reset();
 				var deadBullet = hero.ammo.pool.splice(i, 1);
 				hero.ammo.pool.push(deadBullet[0]);
@@ -459,100 +566,19 @@ var updateScene = function(modifier){
 				if (i != 0 && i != hero.ammo.size){
 					i--;
 				}
+
 				resetEnemy();
 			}
 		}
 	}
-}
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
 
 
 
 
-//check for user input, update player position.
-var updateHero = function(modifier){
-	//fire rate counter
-	counter++;
-	heroCtx.clearRect(hero.x-17, hero.y-17, hero.width+34, hero.height+34); //clear previous player drawing
-	heroCtx.clearRect(0, 0, heroCanvas.width, 60);  //clear score and lives
 
-
-
-	//update player position, check for interaction with border
-	if (keysPressed[38]) { // Player holding up
-		//update image to correct direction, set direction variable of hero object
-		images.hero.src = "img/heroUp.png";
-		hero.direction = "up";
-
-		//screen boundaries up
-		if (hero.y <= 0){
-			hero.y = 0;
-		} else {
-			hero.y -= hero.speed * modifier;
-		}
-	}
-	if (keysPressed[40]) { // Player holding down
-		//update image and direction variable
-		images.hero.src = "img/heroDown.png";
-		hero.direction = "down";
-
-		//screen boundaries down
-		if (hero.y >= (bg.height-hero.height)){
-			hero.y = bg.height - hero.height;
-		} else {
-			hero.y += hero.speed * modifier;
-		}
-	}
-	if (keysPressed[37]) { // Player holding left
-		//update image and direction variable
-		images.hero.src = "img/heroLeft.png";
-		hero.direction = "left";
-
-		//screen boundaries left
-		if (hero.x <= 0){
-			hero.x = 0;
-		} else {
-			hero.x -= hero.speed*modifier;
-		}
-	}
-	if (keysPressed[39]) { // Player holding right
-		//update image and direction variable
-		images.hero.src = "img/heroRight.png";
-		hero.direction = "right";
-
-		//screen boundaries right
-		if (hero.x >= bg.width*0.8 - hero.width){
-			hero.x = bg.width*0.8 - hero.width;
-		} else {
-		hero.x += hero.speed*modifier;
-		}
-	}
-
-	//check for diagonal images
-	if (keysPressed[38] && keysPressed[37]){ //up and left
-		images.hero.src = "img/heroUpLeft.png";
-		hero.direction = "upLeft";
-	}
-	if (keysPressed[38] && keysPressed[39]){ //up and right
-		images.hero.src = "img/heroUpRight.png";
-		hero.direction = "upRight";
-	}
-	if (keysPressed[40] && keysPressed[37]){ //down and left
-		images.hero.src = "img/heroDownLeft.png";
-		hero.direction = "downLeft";
-	}
-	if (keysPressed[40] && keysPressed[39]){ //down and right
-		images.hero.src = "img/heroDownRight.png";
-		hero.direction = "downRight";
-	}
-
-
-
-	//if space was pressed and it has been more frames than the fire rate, get a bullet from the array
-	if (keysPressed[32] && counter >= hero.fireRate) { // Player holding space
-		// console.log("fire!");
-		counter = 0;
-		hero.ammo.getBullet(hero.x, hero.y, 512, hero.direction);
-	}
 
 
 	//check if enemy and hero are colliding
@@ -562,7 +588,23 @@ var updateHero = function(modifier){
 		resetPlayer();
 		resetEnemy();
 	}
+
+	//move enemy
+	if (enemy.y >= bg.height){
+		playerHealth -= 1;
+		resetPlayer();
+		resetEnemy();
+	} else {
+		enemy.y += enemy.speed * modifier;
+	}
 }
+
+
+
+
+
+
+
 
 
 
@@ -576,26 +618,36 @@ var updateHero = function(modifier){
 var render = function(){
 	//if images have been loaded, draw images
 	if (images.loaded) {
-		bgCtx.drawImage(images.bg, bg.x, bg.y); //draw background
-		bgCtx.drawImage(images.bg, bg.x-bg.width, bg.y); //draw background
+		ctx.drawImage(images.bg, bg.x, bg.y); //draw background
+		ctx.drawImage(images.bg, bg.x, bg.y-bg.height); //draw background
 
-		heroCtx.drawImage(images.hero, hero.x, hero.y); //draw hero
+		ctx.drawImage(images.hero, hero.x, hero.y); //draw hero
 
-		mainCtx.drawImage(images.enemy, enemy.x, enemy.y); //draw enemy
+		ctx.drawImage(images.enemy, enemy.x, enemy.y); //draw enemy
 
 
+//**********************************************************************************
+//*********************************	Start Here	*********************************
+//**********************************************************************************
+
+//draw bullets
 
 		// loop through bullet pool, check if bullet is alive, if bullet is alive, draw bullet
 		for (var i = 0; i < hero.ammo.size; i++) {
 			// Only draw until we find a bullet that is not alive
 			if (hero.ammo.pool[i].alive) {
-				mainCtx.drawImage(images.bullet, hero.ammo.pool[i].x, hero.ammo.pool[i].y);
+				ctx.drawImage(images.bullet, hero.ammo.pool[i].x, hero.ammo.pool[i].y);
 			}
 		}
+//**********************************************************************************
+//*********************************	Stop Here	*********************************
+//**********************************************************************************
+
 	}
 
 	scoreElement.textContent = playerScore;
 	healthElement.textContent = playerHealth;
+
 }
 
 
@@ -627,9 +679,7 @@ var gameLoop = function(){
 
 	//run the game functions if the game is not paused
 	if (!isPaused){
-		updateBg(speedModifier);
 		updateScene(speedModifier);
-		updateHero(speedModifier);
 		render();
 	} else {
 		//draw background for the beginning
@@ -690,8 +740,6 @@ restartButton.onclick = function(){
 	playerScore = 0;
 	playerHealth = hero.maxHealth;
 
-	bg.setPos(0, 0); // set background position to 0,0
-
 	resetPlayer();
 	resetEnemy();
 
@@ -727,7 +775,7 @@ unpauseButton.onclick = function(){
 
 
 //check if canvas element is supported
-if (bgCanvas.getContext){
+if (canvas.getContext){
 	//set default values
 	bg.setPos(0, 0); // set background position to 0,0
 	playerHealth = hero.maxHealth;  //set up the player health for the game

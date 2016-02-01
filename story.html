@@ -13,38 +13,48 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="index.html" class="logo" ><img src="img/logo.png" alt="Logo" title="Logo" /></a>
-      <div class="menu" >
-        <a href="index.html" class="links" >Home</a>
-        <div class="dropdown">
-          <a href="story.html" class="links" >Story<div class="arrow arrow-left"></div></a>
-          <div class="dropdown-menu">
-            <a href="story.html#hero" class="sub-links" >Hero</a>
-            <a href="story.html#enemies" class="sub-links" >Enemies</a>
-            <a href="story.html#lasers" class="sub-links" >Lasers!</a>
-          </div>
-        </div>
-        <a href="about.html" class="links" >About the Dev</a>
-      </div>
-    </nav>
-  </header>	
+	<header id="top-bar">
+		<div id="header-wrapper">
+			<div id="logo"><a href="index.html"><img src="img/logoSmall.png" alt="Logo" ></a></div>
+
+			<nav>
+				<ul>
+					<li><a href="index.html">Game</a></li>
+					<li>
+						<a href="story.html">Story <span class="marker"></span></a>
+						<div>
+							<ul>
+								<li><a href="story.html#hero">Hero</a></li>
+								<li><a href="story.html#enemies">Enemies</a></li>
+								<li><a href="story.html#bullets">Bullets</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="about.html">About the Developer</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	
 	
 	<div class="main-content">
 		<h1>Story</h1>
-		<p>Aliens have invaded the Earth!  A band of heroic fighter pilots has risen up to defeat this menace...  Join them and save the world!</p>
+		<p>Aliens have invaded the Earth!  Humans have been defeated, and the aliens have come to claim the last free place on Earth: </p>
+		<p><em>Antarctica!</em></p>
+		<p>Penguins have risen up to defeat these evil aliens.  Join them and save the world!</p>
 
 		<h1>Characters</h1>
 		<h2 id="hero" >The Hero</h2>
-		<p>Courageous Fighter Pilots!</p>
+		<p>Penguins!</p>
 		
 		<h2 id="enemies" >The Enemies</h2>
 		<p>Evil Aliens!</p>
 		
-		<h2 id="lasers" >Lasers</h2>
-		<p>Lasers are the best!</p>
+		<h2 id="bullets" >Bullets</h2>
+		<p>Fish have teamed up with Penguins to defeat the alien menace!</p>
 
+		<br />
 	</div>
 
 </body>

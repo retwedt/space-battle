@@ -13,31 +13,40 @@
 </head>
 
 <body>
-  <header>
-    <nav>
-      <a href="index.html" class="logo" ><img src="img/logo.png" alt="Logo" title="Logo" /></a>
-      <div class="menu" >
-        <a href="index.html" class="links" >Home</a>
-        <div class="dropdown">
-          <a href="story.html" class="links" >Story<div class="arrow arrow-left"></div></a>
-          <div class="dropdown-menu">
-            <a href="story.html#hero" class="sub-links" >Hero</a>
-            <a href="story.html#enemies" class="sub-links" >Enemies</a>
-            <a href="story.html#lasers" class="sub-links" >Lasers!</a>
-          </div>
-        </div>
-        <a href="about.html" class="links" >About the Dev</a>
-      </div>
-    </nav>
-  </header>	
+	<header id="top-bar">
+		<div id="header-wrapper">
+			<div id="logo"><a href="index.html"><img src="img/logoSmall.png" alt="Logo" ></a></div>
+
+			<nav>
+				<ul>
+					<li><a href="index.html">Game</a></li>
+					<li>
+						<a href="story.html">Story <span class="marker"></span></a>
+						<div>
+							<ul>
+								<li><a href="story.html#hero">Hero</a></li>
+								<li><a href="story.html#enemies">Enemies</a></li>
+								<li><a href="story.html#bullets">Bullets</a></li>
+							</ul>
+						</div>
+					</li>
+					<li><a href="about.html">About the Developer</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	
 	
 	<div class="main-content">
 		<h1>Who is the Developer??</h1>
-		<div class="bio">
-			<img class="bio-pic" src="./img/pic_bio.jpg" alt="bio" >
-			<p>This game was created by Rex Twedt.</p>
-			<p>Rex Twedt was just an ordinary kid from Omaha, Nebraska.  After graduating from Iowa State University with a degree in Biochemistry, he began working at Cargill as a lab technician.</p>
-			<p>Then, one day... he quit his job at the lab and returned to school.  Now, he is a <em>Medical Illustrator</em>!  He spends his days creating medical illustrations, using his powers to help the world.  When he isn't studying, Rex enjoys reading, playing guitar, and meandering through the  museums of Chicago.</p>
+		<div class="bio-wrap">
+			<div class="bio-pic" ><img src="./img/pic_bio.jpg" alt="bio" ></div>
+			<div class="bio">
+				<p>This game was created by Rex Twedt.</p>
+				<p>Rex Twedt was just an ordinary kid from Omaha, Nebraska.  After graduating from Iowa State University with a degree in Biochemistry, he began working at Cargill as a lab technician.</p>
+				<p>Then, one day... he quit his job at the lab and returned to school.  Now, he is a <em>Medical Illustrator</em>!  He spends his days creating medical illustrations, using his powers to help the world.  When he isn't studying, Rex enjoys reading, playing guitar, and meandering through the  museums of Chicago.</p>
+			</div>
 		</div>
 	</div>
 	
